@@ -6,11 +6,14 @@ import png
 
 import imageLabelData_pb2
 
+import itertools
 import cv2
 from pycocotools.coco import COCO
 import numpy as np
 from google.protobuf.json_format import MessageToJson
-
+import imgaug as ia
+from imgaug import augmenters as iaa
+import matplotlib.pyplot as plt
 
 def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2, ran_seed=42, get_meta_info=False):
   folder_names = []
@@ -56,11 +59,10 @@ def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2
   return img_paths_annotations
 
 def draw_annotation_segmentation(annotation, height=480, width=640):
-  mask = np.zeros((height, width))
+  mask = np.zeros((height, width), dtype=np.uint8)
 
   mask_list = []
   mask_list_rb = []
-  robot_count = 0
   for ann in annotation:
     segmentations = ann['segmentation']
     category_id = ann['category_id']
@@ -85,13 +87,7 @@ def draw_annotation_segmentation(annotation, height=480, width=640):
   mask_list.extend(mask_list_rb)
 
   for category_id, _mask in mask_list:
-    if category_id<3:
-      mask[_mask == 1] = category_id
-    elif category_id == 3: # categorie is robot
-      mask[_mask == 1] = 6 + robot_count
-      robot_count += 1
-    else:
-      mask[_mask == 1] = category_id-1
+    mask[_mask == 1] = category_id
 
   return mask
 
@@ -151,3 +147,105 @@ def read_label_chunk(img_path):
     for chunk_name, chunk_data in p.chunks():
         if chunk_name == b'laBl':
             return chunk_data
+
+def get_colored_segmentation_mask(img, mask, class_colors=None, augmentation=None):
+  unique = np.unique(mask)
+
+  if class_colors == None:
+    cmap = plt.get_cmap("tab10")
+    class_colors = np.asarray([cmap(i)[:-1] for i in np.linspace(0, 1, num=10)])*255
+    class_colors = class_colors.astype(np.uint8)
+  
+  seg_img = np.zeros((mask.shape[0], mask.shape[1], 3), dtype=np.uint8)
+
+  if augmentation != None:
+      img, mask[:, :] = augment_seg(img, mask[:, :], augmentation)
+
+  for c in unique:
+    seg_img[mask == c] = class_colors[c]
+
+  return img, seg_img
+
+def augment_seg(img, seg , augmentation):
+    # Create a deterministic augmentation from the random one
+    aug_det = augmentation.to_deterministic()
+    # Augment the input image
+    image_aug = aug_det.augment_image(img)
+
+    segmap = ia.SegmentationMapOnImage(seg, nb_classes=np.max(seg) + 1, shape=img.shape)
+    segmap_aug = aug_det.augment_segmentation_maps(segmap)
+    segmap_aug = segmap_aug.get_arr_int()
+
+    return image_aug, segmap_aug
+
+def image_segmentation_generator(data_list, batch_size,
+                                 n_classes, input_height, input_width,
+                                 output_height, output_width, augmentation=None,
+                                 draw_annotation_func = None):
+  
+    zipped = itertools.cycle(data_list)
+
+    while True:
+        X = []
+        Y = []
+        for _ in range(batch_size):
+            data = next(zipped)
+
+            img = cv2.imread(data["img_path"], 1)
+            if draw_annotation_func == None:
+              mask = draw_annotation_segmentation(data["annotation"])
+            else:
+              mask = draw_annotation_func(data["annotation"])
+            
+            if augmentation != None:
+                img, mask = augment_seg(img, mask , augmentation=augmentation )
+
+            X.append(get_image_array(img, input_width,
+                                   input_height, ordering="channels_last"))
+            
+            Y.append(get_segmentation_array(
+                mask, n_classes, output_width, output_height))
+
+        yield np.array(X), np.array(Y)
+
+def get_segmentation_array(image_input, nClasses, width, height, no_reshape=False):
+    """ Load segmentation array from input """
+
+    seg_labels = np.zeros((height, width, nClasses))
+
+    img = image_input
+
+    img = cv2.resize(img, (width, height), interpolation=cv2.INTER_NEAREST)
+
+    for c in range(nClasses):
+        seg_labels[:, :, c] = (img == c).astype(int)
+
+    if not no_reshape:
+        seg_labels = np.reshape(seg_labels, (width*height, nClasses))
+
+    return seg_labels
+
+
+def get_image_array(image_input, width, height, imgNorm="sub_mean",
+                  ordering='channels_first'):
+    """ Load image array from input """
+
+    img = image_input
+
+    if imgNorm == "sub_and_divide":
+        img = np.float32(cv2.resize(img, (width, height))) / 127.5 - 1
+    elif imgNorm == "sub_mean":
+        img = cv2.resize(img, (width, height))
+        img = img.astype(np.float32)
+        img[:, :, 0] -= 103.939
+        img[:, :, 1] -= 116.779
+        img[:, :, 2] -= 123.68
+        img = img[:, :, ::-1]
+    elif imgNorm == "divide":
+        img = cv2.resize(img, (width, height))
+        img = img.astype(np.float32)
+        img = img/255.0
+
+    if ordering == 'channels_first':
+        img = np.rollaxis(img, 2, 0)
+    return img
