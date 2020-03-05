@@ -4,7 +4,6 @@ import os
 import json
 
 import png
-import kaggle
 import imageLabelData_pb2
 import itertools
 import cv2
@@ -252,6 +251,7 @@ def get_image_array(image_input, width, height, imgNorm="sub_mean",
     return img
 
 def get_dataset(dataset_folder, kaggle_api_token_path=None):
+  import kaggle
   with open(kaggle_api_token_path) as json_file:
     kaggle.api._load_config(json.loads(json_file.read()))
   kaggle.api.dataset_download_files('pietbroemmel/naodevils-segmentation-upper-camera', path=dataset_folder, unzip=True)
