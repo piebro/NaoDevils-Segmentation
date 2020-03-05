@@ -2,10 +2,10 @@ import sys
 import io
 import os
 import json
+
 import png
-
+import kaggle
 import imageLabelData_pb2
-
 import itertools
 import cv2
 from pycocotools.coco import COCO
@@ -14,6 +14,7 @@ from google.protobuf.json_format import MessageToJson
 import imgaug as ia
 from imgaug import augmenters as iaa
 import matplotlib.pyplot as plt
+
 
 def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2, ran_seed=42, get_meta_info=False):
   folder_names = []
@@ -249,3 +250,9 @@ def get_image_array(image_input, width, height, imgNorm="sub_mean",
     if ordering == 'channels_first':
         img = np.rollaxis(img, 2, 0)
     return img
+
+def get_dataset(dataset_folder, kaggle_api_token_path=None):
+  with open(kaggle_api_token_path) as json_file:
+    kaggle.api._load_config(json.loads(json_file.read()))
+  kaggle.api.dataset_download_files('pietbroemmel/naodevils-segmentation-upper-camera', path=dataset_folder, unzip=True)
+
