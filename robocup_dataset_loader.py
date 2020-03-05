@@ -1,11 +1,18 @@
-from pycocotools.coco import COCO
-import numpy as np
 import sys
 import io
 import os
-import cv2
+import json
+import png
 
-def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2, ran_seed=42):
+import imageLabelData_pb2
+
+import cv2
+from pycocotools.coco import COCO
+import numpy as np
+from google.protobuf.json_format import MessageToJson
+
+
+def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2, ran_seed=42, get_meta_info=False):
   folder_names = []
   for file_name in os.listdir(dataset_folder):
     if file_name.endswith(".json"):
@@ -23,11 +30,20 @@ def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2
 
     img_ids = sorted(coco.imgs.keys())
     for img_id in img_ids:
-      annotation = coco.loadAnns(coco.getAnnIds(img_id))
       img_file_name = coco.loadImgs(img_id)[0]['file_name']
       img_path = os.path.join(folder_name, img_file_name)
       img_path = os.path.join(dataset_folder, img_path)
-      img_paths_annotations.append((img_path, annotation))
+
+      data_entry = {
+        "img_path": img_path,
+        "annotation": coco.loadAnns(coco.getAnnIds(img_id))
+      }
+      
+      if get_meta_info:
+        meta_info = get_image_meta_infos(img_path)
+        data_entry["meta_info"] = meta_info
+      
+      img_paths_annotations.append(data_entry)
   
   np.random.seed(ran_seed)
   np.random.shuffle(img_paths_annotations)
@@ -40,8 +56,6 @@ def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2
   return img_paths_annotations
 
 def draw_annotation_segmentation(annotation, height=480, width=640):
-  #anns = coco.loadAnns(ann_ids)    
-  #img_infos = coco.loadImgs(img_id)[0] 
   mask = np.zeros((height, width))
 
   mask_list = []
@@ -123,3 +137,17 @@ def draw_annotation_mask_rcnn(annotation, height=480, width=640):
         occlusion = np.logical_and(occlusion, np.logical_not(mask[:, :, i]))
 
   return mask.astype(np.bool), np.array(category_id_list).astype(np.int32)
+
+
+def get_image_meta_infos(img_path):
+  protobuf_chunk = read_label_chunk(img_path)
+  data = imageLabelData_pb2.ImageLabelData()
+  data.ParseFromString(protobuf_chunk)
+  data_json = MessageToJson(data)
+  return json.loads(data_json)
+
+def read_label_chunk(img_path):
+    p = png.Reader(img_path)
+    for chunk_name, chunk_data in p.chunks():
+        if chunk_name == b'laBl':
+            return chunk_data
