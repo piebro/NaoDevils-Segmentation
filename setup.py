@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 
-setup(name="robocup_data_loader",
+setup(name="robocup_dataset_loader",
       version="0.1.0",
       description="Data Loader for the nao robocup dataset",
       author="Piet Broemmel",
