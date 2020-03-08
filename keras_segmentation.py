@@ -95,7 +95,8 @@ def augment_segmentation(img, seg , augmentation):
 
 #@title seg functions
 def train(model,
-          dataset_dir,
+          data_train,
+          data_val,
           log_dir,
           train_str="test",
           epochs=5,
@@ -108,14 +109,9 @@ def train(model,
           validation_steps=None
           ):
   
-    data_train = dataset_loader.get_data_list(
-      dataset_dir, "training", get_meta_info=model.get_meta_info)
-
     train_gen = image_segmentation_generator(
         data_train, batch_size, model, augmentation=augmentation)
     
-    data_val = dataset_loader.get_data_list(
-        dataset_dir, "validation", get_meta_info=model.get_meta_info)
 
     val_gen = image_segmentation_generator(
         data_val, batch_size, model)
@@ -123,7 +119,7 @@ def train(model,
     if steps_per_epoch == None:
       steps_per_epoch = int(len(data_train)/batch_size)
     if validation_steps == None:
-      validation_steps = int(len(data_val)/batch_size*0.6)
+      validation_steps = int(len(data_val)/batch_size*0.8)
 
     cp_dir = os.path.join(log_dir,train_str)
     print("Model dir is: " + cp_dir)
@@ -161,9 +157,9 @@ def load_weight(model, cp_dir, train_str, epoch=None):
   print("loaded weights ", latest_checkpoint)
   return int(latest_checkpoint[-8:-5])
 
-def show_prediction(model, dataset_dir, num_of_images=2):
-  data_pred = dataset_loader.get_data_list(
-        dataset_dir, "training", get_meta_info=model.get_meta_info, ran_seed=random.randint(0,10000))
+def show_prediction(model, data_pred, num_of_images=2):
+  #data_pred = dataset_loader.get_data_list(
+  #      dataset_dir, "training", get_meta_info=model.#get_meta_info, ran_seed=random.randint(0,10000))
 
   for i in range(num_of_images):
 
@@ -234,9 +230,9 @@ def image_segmentation_generator(data_list, batch_size, model, augmentation=None
     yield np.array(X), np.array(Y), [None]
 
 
-def show_images(dataset_dir, get_mask_function, num_of_images=2, augmentation=None):
-  data_show = dataset_loader.get_data_list(
-        dataset_dir, "training", get_meta_info=False, ran_seed=random.randint(0,10000))
+def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None):
+
+  np.shuffle(data_show)
 
   for i in range(0, num_of_images, 2):
     img1 = cv2.imread(data_show[i]["img_path"])

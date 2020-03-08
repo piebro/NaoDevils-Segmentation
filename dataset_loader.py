@@ -12,7 +12,7 @@ import numpy as np
 
 
 
-def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2, ran_seed=42, get_meta_info=False):
+def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2, ran_seed=42):
   folder_names = []
   for file_name in os.listdir(dataset_folder):
     if file_name.endswith(".json"):
@@ -39,9 +39,7 @@ def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2
         "annotation": coco.loadAnns(coco.getAnnIds(img_id))
       }
       
-      if get_meta_info:
-        meta_info = get_image_meta_infos(img_path)
-        data_entry["meta_info"] = meta_info
+      data_entry["meta_info"] = get_image_meta_infos(img_path)
       
       img_paths_annotations.append(data_entry)
   
