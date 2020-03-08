@@ -232,7 +232,7 @@ def image_segmentation_generator(data_list, batch_size, model, augmentation=None
 
 def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None):
 
-  np.shuffle(data_show)
+  np.random.shuffle(data_show)
 
   for i in range(0, num_of_images, 2):
     img1 = cv2.imread(data_show[i]["img_path"])
