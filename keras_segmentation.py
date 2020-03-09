@@ -31,23 +31,6 @@ def add_get_mask_function(name, get_mask_function, n_classes):
       "n_classes": n_classes   
   }
 
-def get_segmentation_array(image_input, nClasses, width, height, no_reshape=False):
-    """ Load segmentation array from input """
-
-    seg_labels = np.zeros((height, width, nClasses))
-
-    img = image_input
-
-    img = cv2.resize(img, (width, height), interpolation=cv2.INTER_NEAREST)
-
-    for c in range(nClasses):
-        seg_labels[:, :, c] = (img == c).astype(int)
-
-    if not no_reshape:
-        seg_labels = np.reshape(seg_labels, (width*height, nClasses))
-
-    return seg_labels
-
 def get_mask(annotation, height=480, width=640):
   mask = np.zeros((height, width), dtype=np.uint8)
 
@@ -81,6 +64,85 @@ def get_mask(annotation, height=480, width=640):
 
   return mask
 
+
+def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None):
+  np.random.shuffle(data_show)
+
+  if type(augmentation) == str:
+    augmentation = ALL_AUGMENTATIONS[augmentation]
+
+  if type(get_mask_function) == str:
+    get_mask_function = ALL_GET_MASK_FUNCTIONS[get_mask_function]["func"]
+
+  for i in range(0, num_of_images, 2):
+    img1 = cv2.imread(data_show[i]["img_path"])
+    gt1 = get_mask_function(data_show[i]["annotation"])
+    img1, gt1 = get_colored_segmentation_mask(img1, gt1, augmentation=augmentation)
+
+    img2 = cv2.imread(data_show[i+1]["img_path"])
+    gt2 = get_mask_function(data_show[i+1]["annotation"])
+    img2, gt2 = get_colored_segmentation_mask(img2, gt2, augmentation=augmentation)
+
+    fig = plt.figure(figsize=(20,30))
+
+    ax = fig.add_subplot(1,4,1)
+    ax.set_axis_off()
+    ax.title.set_text("Image id: " + os.path.basename(data_show[i]["img_path"])[:5])
+    ax.imshow(cv2.cvtColor(img1, cv2.COLOR_BGR2RGB))
+
+    ax = fig.add_subplot(1,4,2)
+    ax.set_axis_off()
+    ax.title.set_text("Groundtruth")
+    ax.imshow(gt1)
+
+    ax = fig.add_subplot(1,4,3)
+    ax.set_axis_off()
+    ax.title.set_text("Image id: " + os.path.basename(data_show[i+1]["img_path"])[:5])
+    ax.imshow(cv2.cvtColor(img2, cv2.COLOR_BGR2RGB))
+
+    ax = fig.add_subplot(1,4,4)
+    ax.set_axis_off()
+    ax.title.set_text("Groundtruth")
+    ax.imshow(gt2)
+
+
+def show_prediction(model, data_pred, num_of_images=2):
+  for i in range(num_of_images):
+
+    data = data_pred[i]
+    img = cv2.imread(data["img_path"])
+
+
+    gt = model.get_mask_function(data["annotation"])
+    img, gt = get_colored_segmentation_mask(img, gt)
+
+
+    img_array = dataset_loader.get_image_array(
+        img, model.input_width, model.input_height, ordering="channels_last")
+    pred = model.predict(np.array([img_array]))
+    pred = np.argmax(pred[0], axis=-1)
+    img, pred = get_colored_segmentation_mask(img, pred)
+
+
+    fig = plt.figure(figsize=(20,30))
+    ax = fig.add_subplot(1,3,1)
+    ax.set_axis_off()
+    image_name_id = os.path.basename(data["img_path"])[:5]
+    ax.title.set_text("Image id: " + image_name_id)
+    ax.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+
+    ax = fig.add_subplot(1,3,2)
+    ax.set_axis_off()
+    ax.title.set_text("Groundtruth")
+    ax.imshow(gt)
+
+    ax = fig.add_subplot(1,3,3)
+    ax.set_axis_off()
+    ax.title.set_text("Prediction")
+    ax.imshow(pred)
+    fig.show()
+
+
 def get_colored_segmentation_mask(img, mask, class_colors=None, augmentation=None):
   unique = np.unique(mask)
 
@@ -99,19 +161,89 @@ def get_colored_segmentation_mask(img, mask, class_colors=None, augmentation=Non
 
   return img, seg_img
 
-def augment_segmentation(img, seg , augmentation):
-    # Create a deterministic augmentation from the random one
-    aug_det = augmentation.to_deterministic()
-    # Augment the input image
-    image_aug = aug_det.augment_image(img)
 
-    segmap = ia.SegmentationMapOnImage(seg, nb_classes=np.max(seg) + 1, shape=img.shape)
-    segmap_aug = aug_det.augment_segmentation_maps(segmap)
-    segmap_aug = segmap_aug.get_arr_int()
+def get_segmentation_array(image_input, nClasses, width, height, no_reshape=False):
+    """ Load segmentation array from input """
 
-    return image_aug, segmap_aug
+    seg_labels = np.zeros((height, width, nClasses))
 
-#@title seg functions
+    img = image_input
+
+    img = cv2.resize(img, (width, height), interpolation=cv2.INTER_NEAREST)
+
+    for c in range(nClasses):
+        seg_labels[:, :, c] = (img == c).astype(int)
+
+    if not no_reshape:
+        seg_labels = np.reshape(seg_labels, (width*height, nClasses))
+
+    return seg_labels
+
+
+def get_model_from_str(log_dir, model_str, epoch=None, try_loading_weights=True):
+  model_str_list = model_str.split("-")
+
+  input_size_str = model_str_list[1]
+  input_height = int(input_size_str.split("x")[0])
+  input_width = int(input_size_str.split("x")[1])
+
+  get_mask_function = ALL_GET_MASK_FUNCTIONS[model_str_list[2]]["func"]
+  n_classes = ALL_GET_MASK_FUNCTIONS[model_str_list[2]]["n_classes"]
+
+  model = ALL_MODELS[model_str_list[0]](get_mask_function, n_classes, input_height, input_width)
+  
+  if try_loading_weights:
+    cp_dir = os.path.join(log_dir, model_str)
+    load_weight(model, cp_dir, model_str, epoch=epoch)
+  return model
+
+def load_weight(model, cp_dir, train_str, epoch=None):
+  if epoch is None:
+    latest_checkpoint = sorted(glob.glob(os.path.join(cp_dir, train_str + "_weights.*")))[-1]
+  else:
+    latest_checkpoint = os.path.join(cp_dir, train_str + "_weights.{:03d}.hdf5".format(epoch))
+
+  model.load_weights(latest_checkpoint)
+  print("loaded weights ", latest_checkpoint)
+  return int(latest_checkpoint[-8:-5])
+
+
+def train_with_str(log_dir, 
+                   data_train,
+                   data_val,
+                   model_str,
+                   epochs,
+                   batch_size=4,
+                   optimizer_name='adadelta',
+                   metrics=['accuracy'],
+                   loss='categorical_crossentropy',
+                   steps_per_epoch=None,
+                   validation_steps=None
+                   ):
+  model = get_model_from_str(log_dir, model_str, try_loading_weights=False)
+
+  print('\nParameter Count:', model.count_params())
+
+  aug_str = model_str.split("-")[3]
+  augmentation = ALL_AUGMENTATIONS[aug_str]
+  if augmentation==None:
+    print("no augmentation")
+
+  train(model,
+      data_train,
+      data_val,
+      log_dir,
+      train_str=model_str,
+      epochs=epochs,
+      batch_size=batch_size,
+      optimizer_name=optimizer_name,
+      augmentation=augmentation,
+      metrics=metrics,
+      loss=loss,
+      steps_per_epoch=steps_per_epoch,
+      validation_steps=validation_steps
+      )
+
 def train(model,
           data_train,
           data_val,
@@ -156,60 +288,15 @@ def train(model,
                   metrics=metrics)
     
     
-    model.fit_generator(train_gen,
-                        steps_per_epoch,
-                        validation_data=val_gen,
-                        validation_steps=validation_steps,
-                        epochs=epochs,
-                        callbacks=[tensorboard_callback, save_callback],
-                        initial_epoch=start_epoch)    
+    model.fit(train_gen,
+              steps_per_epoch,
+              validation_data=val_gen,
+              validation_steps=validation_steps,
+              epochs=epochs,
+              callbacks=[tensorboard_callback, save_callback],
+              initial_epoch=start_epoch)    
     return model
 
-def load_weight(model, cp_dir, train_str, epoch=None):
-  if epoch is None:
-    latest_checkpoint = sorted(glob.glob(os.path.join(cp_dir, train_str + "_weights.*")))[-1]
-  else:
-    latest_checkpoint = os.path.join(cp_dir, train_str + "_weights.{:03d}.hdf5".format(epoch))
-
-  model.load_weights(latest_checkpoint)
-  print("loaded weights ", latest_checkpoint)
-  return int(latest_checkpoint[-8:-5])
-
-def show_prediction(model, data_pred, num_of_images=2):
-  for i in range(num_of_images):
-
-    data = data_pred[i]
-    img = cv2.imread(data["img_path"])
-
-
-    gt = model.get_mask_function(data["annotation"])
-    img, gt = get_colored_segmentation_mask(img, gt)
-
-
-    img_array = dataset_loader.get_image_array(
-        img, model.input_width, model.input_height, ordering="channels_last")
-    pred = model.predict(np.array([img_array]))
-    pred = np.argmax(pred[0], axis=-1)
-    img, pred = get_colored_segmentation_mask(img, pred)
-
-
-    fig = plt.figure(figsize=(20,30))
-    ax = fig.add_subplot(1,3,1)
-    ax.set_axis_off()
-    image_name_id = os.path.basename(data["img_path"])[:5]
-    ax.title.set_text("Image id: " + image_name_id)
-    ax.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-
-    ax = fig.add_subplot(1,3,2)
-    ax.set_axis_off()
-    ax.title.set_text("Groundtruth")
-    ax.imshow(gt)
-
-    ax = fig.add_subplot(1,3,3)
-    ax.set_axis_off()
-    ax.title.set_text("Prediction")
-    ax.imshow(pred)
-    fig.show()
 
 def image_segmentation_generator(data_list, batch_size, model, augmentation=None):
   
@@ -245,98 +332,14 @@ def image_segmentation_generator(data_list, batch_size, model, augmentation=None
     yield np.array(X), np.array(Y), [None]
 
 
-def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None):
+def augment_segmentation(img, seg , augmentation):
+    # Create a deterministic augmentation from the random one
+    aug_det = augmentation.to_deterministic()
+    # Augment the input image
+    image_aug = aug_det.augment_image(img)
 
-  np.random.shuffle(data_show)
+    segmap = ia.SegmentationMapOnImage(seg, nb_classes=np.max(seg) + 1, shape=img.shape)
+    segmap_aug = aug_det.augment_segmentation_maps(segmap)
+    segmap_aug = segmap_aug.get_arr_int()
 
-  if type(augmentation) == str:
-    augmentation = ALL_AUGMENTATIONS[augmentation]
-
-  if type(get_mask_function) == str:
-    get_mask_function = ALL_GET_MASK_FUNCTIONS[get_mask_function]["func"]
-
-  for i in range(0, num_of_images, 2):
-    img1 = cv2.imread(data_show[i]["img_path"])
-    gt1 = get_mask_function(data_show[i]["annotation"])
-    img1, gt1 = get_colored_segmentation_mask(img1, gt1, augmentation=augmentation)
-
-    img2 = cv2.imread(data_show[i+1]["img_path"])
-    gt2 = get_mask_function(data_show[i+1]["annotation"])
-    img2, gt2 = get_colored_segmentation_mask(img2, gt2, augmentation=augmentation)
-
-    fig = plt.figure(figsize=(20,30))
-
-    ax = fig.add_subplot(1,4,1)
-    ax.set_axis_off()
-    ax.title.set_text("Image id: " + os.path.basename(data_show[i]["img_path"])[:5])
-    ax.imshow(cv2.cvtColor(img1, cv2.COLOR_BGR2RGB))
-
-    ax = fig.add_subplot(1,4,2)
-    ax.set_axis_off()
-    ax.title.set_text("Groundtruth")
-    ax.imshow(gt1)
-
-    ax = fig.add_subplot(1,4,3)
-    ax.set_axis_off()
-    ax.title.set_text("Image id: " + os.path.basename(data_show[i+1]["img_path"])[:5])
-    ax.imshow(cv2.cvtColor(img2, cv2.COLOR_BGR2RGB))
-
-    ax = fig.add_subplot(1,4,4)
-    ax.set_axis_off()
-    ax.title.set_text("Groundtruth")
-    ax.imshow(gt2)
-
-
-def get_model_from_str(log_dir, model_str, epoch=None, try_loading_weights=True):
-  model_str_list = model_str.split("-")
-
-  input_size_str = model_str_list[1]
-  input_height = int(input_size_str.split("x")[0])
-  input_width = int(input_size_str.split("x")[1])
-
-  get_mask_function = ALL_GET_MASK_FUNCTIONS[model_str_list[2]]["func"]
-  n_classes = ALL_GET_MASK_FUNCTIONS[model_str_list[2]]["n_classes"]
-
-  model = ALL_MODELS[model_str_list[0]](get_mask_function, n_classes, input_height, input_width)
-  
-  if try_loading_weights:
-    cp_dir = os.path.join(log_dir, model_str)
-    load_weight(model, cp_dir, model_str, epoch=epoch)
-  return model
-
-
-def train_with_str(log_dir, 
-                   data_train,
-                   data_val,
-                   model_str,
-                   epochs,
-                   batch_size=4,
-                   optimizer_name='adadelta',
-                   metrics=['accuracy'],
-                   loss='categorical_crossentropy',
-                   steps_per_epoch=None,
-                   validation_steps=None
-                   ):
-  model = get_model_from_str(log_dir, model_str, try_loading_weights=False)
-
-  print('\nParameter Count:', model.count_params())
-
-  aug_str = model_str.split("-")[3]
-  augmentation = ALL_AUGMENTATIONS[aug_str]
-  if augmentation==None:
-    print("no augmentation")
-
-  train(model,
-      data_train,
-      data_val,
-      log_dir,
-      train_str=model_str,
-      epochs=epochs,
-      batch_size=batch_size,
-      optimizer_name=optimizer_name,
-      augmentation=augmentation,
-      metrics=metrics,
-      loss=loss,
-      steps_per_epoch=steps_per_epoch,
-      validation_steps=validation_steps
-      )
+    return image_aug, segmap_aug
