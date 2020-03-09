@@ -202,7 +202,7 @@ def get_segmentation_array(image_input, nClasses, width, height, no_reshape=Fals
     if not no_reshape:
         seg_labels = np.reshape(seg_labels, (width*height, nClasses))
 
-    return seg_labelsget colored segmentation mask
+    return seg_labels
 
 
 def get_model_from_str(log_dir, model_str, epoch=None, try_loading_weights=True):
