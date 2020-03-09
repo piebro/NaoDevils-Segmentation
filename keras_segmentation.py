@@ -252,6 +252,9 @@ def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None
   if type(augmentation) == str:
     augmentation = ALL_AUGMENTATIONS[augmentation]
 
+  if type(get_mask_function) == str:
+    get_mask_function = ALL_GET_MASK_FUNCTIONS[get_mask_function]["func"]
+
   for i in range(0, num_of_images, 2):
     img1 = cv2.imread(data_show[i]["img_path"])
     gt1 = get_mask_function(data_show[i]["annotation"])
@@ -302,7 +305,18 @@ def get_model_from_str(log_dir, model_str, epoch=None, try_loading_weights=True)
   return model
 
 
-def train_with_str(log_dir, data_train, data_val, model_str, epochs):
+def train_with_str(log_dir, 
+                   data_train,
+                   data_val,
+                   model_str,
+                   epochs,
+                   batch_size=4,
+                   optimizer_name='adadelta',
+                   metrics=['accuracy'],
+                   loss='categorical_crossentropy',
+                   steps_per_epoch=None,
+                   validation_steps=None
+                   ):
   model = get_model_from_str(log_dir, model_str, try_loading_weights=False)
 
   print('\nParameter Count:', model.count_params())
@@ -318,11 +332,11 @@ def train_with_str(log_dir, data_train, data_val, model_str, epochs):
       log_dir,
       train_str=model_str,
       epochs=epochs,
-      batch_size=4,
-      optimizer_name='adadelta',
+      batch_size=batch_size,
+      optimizer_name=optimizer_name,
       augmentation=augmentation,
-      metrics=['accuracy'],
-      loss='categorical_crossentropy',
-      steps_per_epoch=10,
-      validation_steps=10
+      metrics=metrics,
+      loss=loss,
+      steps_per_epoch=steps_per_epoch,
+      validation_steps=validation_steps
       )
