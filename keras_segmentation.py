@@ -21,20 +21,29 @@ ALL_GET_MASK_FUNCTIONS = {}
 
 def add_model(name, get_model_function):
   '''
-  add model
+  add model to ALL_MODELS
   '''
   ALL_MODELS[name] = get_model_function
 
 def add_augmentation(name, augmentation):
+  '''
+  add augmentation to ALL_AUGMENTATIONS
+  '''
   ALL_AUGMENTATIONS[name] = augmentation
 
 def add_get_mask_function(name, get_mask_function, n_classes):
+  '''
+  add get_mask_function to ALL_GET_MASK_FUNCTIONS
+  '''
   ALL_GET_MASK_FUNCTIONS[name] = {
       "func": get_mask_function,
       "n_classes": n_classes   
   }
 
 def get_mask(annotation, height=480, width=640):
+  '''
+  returns mask with all annotations drawn on the mask
+  '''
   mask = np.zeros((height, width), dtype=np.uint8)
 
   mask_list = []
@@ -69,6 +78,10 @@ def get_mask(annotation, height=480, width=640):
 
 
 def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None):
+  '''
+  shows random images as a figure with pyplot from data_show with the given the mask
+  '''
+  #TODO change shuffeling the data to picking random samples without picking the same ones in the data
   np.random.shuffle(data_show)
 
   if type(augmentation) == str:
@@ -110,6 +123,10 @@ def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None
 
 
 def show_prediction(model, data_pred, num_of_images=2):
+  '''
+  shows predicted images with the given model from random samples 
+  '''
+  #TODO show random images in the range without showing the same one twice
   for i in range(num_of_images):
 
     data = data_pred[i]
@@ -147,6 +164,9 @@ def show_prediction(model, data_pred, num_of_images=2):
 
 
 def get_colored_segmentation_mask(img, mask, class_colors=None, augmentation=None):
+  '''
+  color the mask and output it as an rbg image
+  '''
   unique = np.unique(mask)
 
   if class_colors == None:
@@ -166,7 +186,9 @@ def get_colored_segmentation_mask(img, mask, class_colors=None, augmentation=Non
 
 
 def get_segmentation_array(image_input, nClasses, width, height, no_reshape=False):
-    """ Load segmentation array from input """
+    '''
+    Load segmentation array from input
+    '''
 
     seg_labels = np.zeros((height, width, nClasses))
 
@@ -180,7 +202,7 @@ def get_segmentation_array(image_input, nClasses, width, height, no_reshape=Fals
     if not no_reshape:
         seg_labels = np.reshape(seg_labels, (width*height, nClasses))
 
-    return seg_labels
+    return seg_labelsget colored segmentation mask
 
 
 def get_model_from_str(log_dir, model_str, epoch=None, try_loading_weights=True):
