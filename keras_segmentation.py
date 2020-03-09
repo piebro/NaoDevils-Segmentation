@@ -30,7 +30,7 @@ def get_segmentation_array(image_input, nClasses, width, height, no_reshape=Fals
 
     return seg_labels
 
-def draw_annotation_segmentation(annotation, height=480, width=640):
+def get_mask(annotation, height=480, width=640):
   mask = np.zeros((height, width), dtype=np.uint8)
 
   mask_list = []
@@ -158,9 +158,6 @@ def load_weight(model, cp_dir, train_str, epoch=None):
   return int(latest_checkpoint[-8:-5])
 
 def show_prediction(model, data_pred, num_of_images=2):
-  #data_pred = dataset_loader.get_data_list(
-  #      dataset_dir, "training", get_meta_info=model.#get_meta_info, ran_seed=random.randint(0,10000))
-
   for i in range(num_of_images):
 
     data = data_pred[i]
