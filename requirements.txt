@@ -1,0 +1,8 @@
+imgaug
+matplotlib
+numpy
+keras
+tensorflow>=2.1.0
+opencv-python
+pypng
+protobuf
