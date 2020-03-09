@@ -20,6 +20,9 @@ ALL_AUGMENTATIONS = {}
 ALL_GET_MASK_FUNCTIONS = {}
 
 def add_model(name, get_model_function):
+  '''
+  add model
+  '''
   ALL_MODELS[name] = get_model_function
 
 def add_augmentation(name, augmentation):
