@@ -41,11 +41,11 @@ jobs:
         mv docs/NaoDevils-Segmentation/* docs
         rm -d docs/NaoDevils-Segmentation
         
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: master # The branch the action should deploy to.
-        FOLDER: docs # The folder the action should deploy.
+    #- name: Deploy to GitHub Pages
+    #  uses: JamesIves/github-pages-deploy-action@releases/v3
+    #  with:
+    #    ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    #    BRANCH: master # The branch the action should deploy to.
+    #    FOLDER: docs # The folder the action should deploy.
         
         
