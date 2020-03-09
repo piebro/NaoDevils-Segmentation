@@ -13,6 +13,24 @@ import tensorflow as tf
 import itertools
 
 
+ALL_MODELS = {}
+
+ALL_AUGMENTATIONS = {}
+
+ALL_GET_MASK_FUNCTIONS = {}
+
+def add_model(name, get_model_function):
+  ALL_MODELS[name] = get_model_function
+
+def add_augmentation(name, augmentation):
+  ALL_AUGMENTATIONS[name] = augmentation
+
+def add_get_mask_function(name, get_mask_function, n_classes):
+  ALL_GET_MASK_FUNCTIONS[name] = {
+      "func": get_mask_function,
+      "n_classes": n_classes   
+  }
+
 def get_segmentation_array(image_input, nClasses, width, height, no_reshape=False):
     """ Load segmentation array from input """
 
@@ -231,6 +249,9 @@ def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None
 
   np.random.shuffle(data_show)
 
+  if type(augmentation) == str:
+    augmentation = ALL_AUGMENTATIONS[augmentation]
+
   for i in range(0, num_of_images, 2):
     img1 = cv2.imread(data_show[i]["img_path"])
     gt1 = get_mask_function(data_show[i]["annotation"])
@@ -261,3 +282,47 @@ def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None
     ax.set_axis_off()
     ax.title.set_text("Groundtruth")
     ax.imshow(gt2)
+
+
+def get_model_from_str(log_dir, model_str, epoch=None, try_loading_weights=True):
+  model_str_list = model_str.split("-")
+
+  input_size_str = model_str_list[1]
+  input_height = int(input_size_str.split("x")[0])
+  input_width = int(input_size_str.split("x")[1])
+
+  get_mask_function = ALL_GET_MASK_FUNCTIONS[model_str_list[2]]["func"]
+  n_classes = ALL_GET_MASK_FUNCTIONS[model_str_list[2]]["n_classes"]
+
+  model = ALL_MODELS[model_str_list[0]](get_mask_function, n_classes, input_height, input_width)
+  
+  if try_loading_weights:
+    cp_dir = os.path.join(log_dir, model_str)
+    load_weight(model, cp_dir, model_str, epoch=epoch)
+  return model
+
+
+def train_with_str(log_dir, data_train, data_val, model_str, epochs):
+  model = get_model_from_str(log_dir, model_str, try_loading_weights=False)
+
+  print('\nParameter Count:', model.count_params())
+
+  aug_str = model_str.split("-")[3]
+  augmentation = ALL_AUGMENTATIONS[aug_str]
+  if augmentation==None:
+    print("no augmentation")
+
+  train(model,
+      data_train,
+      data_val,
+      log_dir,
+      train_str=model_str,
+      epochs=epochs,
+      batch_size=4,
+      optimizer_name='adadelta',
+      augmentation=augmentation,
+      metrics=['accuracy'],
+      loss='categorical_crossentropy',
+      steps_per_epoch=10,
+      validation_steps=10
+      )
