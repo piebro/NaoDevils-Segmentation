@@ -313,7 +313,7 @@ def train(model,
                   metrics=metrics)
     
     
-    model.fit(train_gen,
+    model.fit_generator(train_gen,
               steps_per_epoch,
               validation_data=val_gen,
               validation_steps=validation_steps,
