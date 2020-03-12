@@ -1,7 +1,7 @@
 import os
 import glob
 
-import naodevils_segmentation.dataset_loader
+import naodevils_segmentation.dataset_loader as dataset_loader
 
 import numpy as np
 import imgaug as ia
