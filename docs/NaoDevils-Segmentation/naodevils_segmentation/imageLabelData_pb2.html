@@ -1,0 +1,1447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2 API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># -*- coding: utf-8 -*-
+# Generated by the protocol buffer compiler.  DO NOT EDIT!
+# source: imageLabelData.proto
+
+from google.protobuf import descriptor as _descriptor
+from google.protobuf import message as _message
+from google.protobuf import reflection as _reflection
+from google.protobuf import symbol_database as _symbol_database
+# @@protoc_insertion_point(imports)
+
+_sym_db = _symbol_database.Default()
+
+
+
+
+DESCRIPTOR = _descriptor.FileDescriptor(
+  name=&#39;imageLabelData.proto&#39;,
+  package=&#39;imageLabelData&#39;,
+  syntax=&#39;proto2&#39;,
+  serialized_options=b&#39;H\003&#39;,
+  serialized_pb=b&#39;\n\x14imageLabelData.proto\x12\x0eimageLabelData\&#34;\xf6\x14\n\x0eImageLabelData\x12\x34\n\x06robots\x18\x01 \x03(\x0b\x32$.imageLabelData.ImageLabelData.Robot\x12:\n\tobstacles\x18\x10 \x03(\x0b\x32\&#39;.imageLabelData.ImageLabelData.Obstacle\x12\x32\n\x05\x62\x61lls\x18\x02 \x03(\x0b\x32#.imageLabelData.ImageLabelData.Ball\x12:\n\tgoalposts\x18\x0f \x03(\x0b\x32\&#39;.imageLabelData.ImageLabelData.Goalpost\x12\x32\n\x05goals\x18\x03 \x03(\x0b\x32#.imageLabelData.ImageLabelData.Goal\x12&lt;\n\x0epenaltyCrosses\x18\x04 \x03(\x0b\x32$.imageLabelData.ImageLabelData.Label\x12\x41\n\x0clineCrossing\x18\x0b \x03(\x0b\x32+.imageLabelData.ImageLabelData.LineCrossing\x12\x41\n\x0c\x63\x65nterCircle\x18\x0c \x03(\x0b\x32+.imageLabelData.ImageLabelData.Centercircle\x12K\n\x11\x63\x61meraInformation\x18\x05 \x01(\x0b\x32\x30.imageLabelData.ImageLabelData.CameraInformation\x12\x43\n\nimageInfos\x18\r \x01(\x0b\x32/.imageLabelData.ImageLabelData.ImageInformation\x12\x11\n\ttimestamp\x18\x06 \x01(\x05\x12\x38\n\x0b\x63\x61ptureDate\x18\x07 \x01(\x0b\x32#.imageLabelData.ImageLabelData.Date\x12\x17\n\x0f\x63\x61ptureLocation\x18\x08 \x01(\t\x12\x13\n\x0b\x64\x61tasetName\x18\t \x01(\t\x12\x0c\n\x04team\x18\n \x01(\t\x12\x14\n\x0cplayerNumber\x18\x0e \x01(\x05\x1a\x80\x01\n\x0b\x42oundingBox\x12\x37\n\tupperLeft\x18\x01 \x02(\x0b\x32$.imageLabelData.ImageLabelData.Point\x12\x38\n\nlowerRight\x18\x02 \x02(\x0b\x32$.imageLabelData.ImageLabelData.Point\x1a\x1d\n\x05Point\x12\t\n\x01x\x18\x01 \x02(\x05\x12\t\n\x01y\x18\x02 \x02(\x05\x1a\x30\n\x04\x44\x61te\x12\x0b\n\x03\x64\x61y\x18\x01 \x02(\x05\x12\r\n\x05month\x18\x02 \x02(\x05\x12\x0c\n\x04year\x18\x03 \x02(\x05\x1a\xb9\x01\n\x05Label\x12?\n\x0b\x62oundingBox\x18\x01 \x02(\x0b\x32*.imageLabelData.ImageLabelData.BoundingBox\x12\x31\n\x04\x64\x61te\x18\x02 \x01(\x0b\x32#.imageLabelData.ImageLabelData.Date\x12\x19\n\x11verificationcount\x18\x03 \x01(\x05\x12\x0e\n\x06person\x18\x04 \x01(\t\x12\x11\n\tconcealed\x18\x05 \x01(\x08\x1a\x7f\n\x08Matrix3f\x12\x0b\n\x03m00\x18\x01 \x02(\x02\x12\x0b\n\x03m01\x18\x02 \x02(\x02\x12\x0b\n\x03m02\x18\x03 \x02(\x02\x12\x0b\n\x03m10\x18\x04 \x02(\x02\x12\x0b\n\x03m11\x18\x05 \x02(\x02\x12\x0b\n\x03m12\x18\x06 \x02(\x02\x12\x0b\n\x03m20\x18\x07 \x02(\x02\x12\x0b\n\x03m21\x18\x08 \x02(\x02\x12\x0b\n\x03m22\x18\t \x02(\x02\x1a+\n\x08Vector3f\x12\t\n\x01x\x18\x01 \x02(\x02\x12\t\n\x01y\x18\x02 \x02(\x02\x12\t\n\x01z\x18\x03 \x02(\x02\x1a \n\x08Vector2f\x12\t\n\x01x\x18\x01 \x02(\x02\x12\t\n\x01y\x18\x02 \x02(\x02\x1a(\n\x05\x43olor\x12\t\n\x01r\x18\x01 \x02(\x05\x12\t\n\x01g\x18\x02 \x02(\x05\x12\t\n\x01\x62\x18\x03 \x02(\x05\x1a\x9a\x01\n\x05Robot\x12\x33\n\x05label\x18\x01 \x02(\x0b\x32$.imageLabelData.ImageLabelData.Label\x12\x13\n\x0borientation\x18\x02 \x01(\x05\x12\x0e\n\x06\x66\x61llen\x18\x03 \x01(\x08\x12\x37\n\tteamcolor\x18\x04 \x01(\x0b\x32$.imageLabelData.ImageLabelData.Color\x1a?\n\x08Obstacle\x12\x33\n\x05label\x18\x01 \x02(\x0b\x32$.imageLabelData.ImageLabelData.Label\x1a\x88\x04\n\x11\x43\x61meraInformation\x12O\n\nresolution\x18\x01 \x02(\x0b\x32;.imageLabelData.ImageLabelData.CameraInformation.Resolution\x12\x13\n\x0b\x63\x61meraIndex\x18\x02 \x01(\x05\x12\x39\n\x08rotation\x18\x03 \x01(\x0b\x32\&#39;.imageLabelData.ImageLabelData.Matrix3f\x12&lt;\n\x0btranslation\x18\x04 \x01(\x0b\x32\&#39;.imageLabelData.ImageLabelData.Vector3f\x12[\n\x10\x63\x61meraIntrinsics\x18\x05 \x01(\x0b\x32\x41.imageLabelData.ImageLabelData.CameraInformation.CameraIntrinsics\x1a+\n\nResolution\x12\x0e\n\x06height\x18\x01 \x02(\x05\x12\r\n\x05width\x18\x02 \x02(\x05\x1a\x89\x01\n\x10\x43\x61meraIntrinsics\x12\x19\n\x11openingAngleWidth\x18\x01 \x02(\x02\x12\x1a\n\x12openingAngleHeight\x18\x02 \x02(\x02\x12&gt;\n\ropticalCenter\x18\x03 \x02(\x0b\x32\&#39;.imageLabelData.ImageLabelData.Vector2f\x1aK\n\x04\x42\x61ll\x12\x33\n\x05label\x18\x01 \x02(\x0b\x32$.imageLabelData.ImageLabelData.Label\x12\x0e\n\x06moving\x18\x02 \x01(\x08\x1a?\n\x08Goalpost\x12\x33\n\x05label\x18\x01 \x02(\x0b\x32$.imageLabelData.ImageLabelData.Label\x1aw\n\x04Goal\x12\x36\n\x08leftPost\x18\x01 \x01(\x0b\x32$.imageLabelData.ImageLabelData.Label\x12\x37\n\trightPost\x18\x02 \x01(\x0b\x32$.imageLabelData.ImageLabelData.Label\x1a\x43\n\x0cLineCrossing\x12\x33\n\x05label\x18\x01 \x02(\x0b\x32$.imageLabelData.ImageLabelData.Label\x1a\x43\n\x0c\x43\x65ntercircle\x12\x33\n\x05label\x18\x01 \x02(\x0b\x32$.imageLabelData.ImageLabelData.Label\x1aU\n\x10ImageInformation\x12\x14\n\x0cimagechannel\x18\x01 \x01(\x05\x12\x10\n\x08\x62lurness\x18\x02 \x01(\x02\x12\x19\n\x11\x61verage_brightnes\x18\x03 \x01(\x05\x42\x02H\x03&#39;
+)
+
+
+
+
+_IMAGELABELDATA_BOUNDINGBOX = _descriptor.Descriptor(
+  name=&#39;BoundingBox&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.BoundingBox&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;upperLeft&#39;, full_name=&#39;imageLabelData.ImageLabelData.BoundingBox.upperLeft&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;lowerRight&#39;, full_name=&#39;imageLabelData.ImageLabelData.BoundingBox.lowerRight&#39;, index=1,
+      number=2, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=839,
+  serialized_end=967,
+)
+
+_IMAGELABELDATA_POINT = _descriptor.Descriptor(
+  name=&#39;Point&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Point&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;x&#39;, full_name=&#39;imageLabelData.ImageLabelData.Point.x&#39;, index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;y&#39;, full_name=&#39;imageLabelData.ImageLabelData.Point.y&#39;, index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=969,
+  serialized_end=998,
+)
+
+_IMAGELABELDATA_DATE = _descriptor.Descriptor(
+  name=&#39;Date&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Date&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;day&#39;, full_name=&#39;imageLabelData.ImageLabelData.Date.day&#39;, index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;month&#39;, full_name=&#39;imageLabelData.ImageLabelData.Date.month&#39;, index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;year&#39;, full_name=&#39;imageLabelData.ImageLabelData.Date.year&#39;, index=2,
+      number=3, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1000,
+  serialized_end=1048,
+)
+
+_IMAGELABELDATA_LABEL = _descriptor.Descriptor(
+  name=&#39;Label&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Label&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;boundingBox&#39;, full_name=&#39;imageLabelData.ImageLabelData.Label.boundingBox&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;date&#39;, full_name=&#39;imageLabelData.ImageLabelData.Label.date&#39;, index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;verificationcount&#39;, full_name=&#39;imageLabelData.ImageLabelData.Label.verificationcount&#39;, index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;person&#39;, full_name=&#39;imageLabelData.ImageLabelData.Label.person&#39;, index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b&#34;&#34;.decode(&#39;utf-8&#39;),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;concealed&#39;, full_name=&#39;imageLabelData.ImageLabelData.Label.concealed&#39;, index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1051,
+  serialized_end=1236,
+)
+
+_IMAGELABELDATA_MATRIX3F = _descriptor.Descriptor(
+  name=&#39;Matrix3f&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Matrix3f&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;m00&#39;, full_name=&#39;imageLabelData.ImageLabelData.Matrix3f.m00&#39;, index=0,
+      number=1, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;m01&#39;, full_name=&#39;imageLabelData.ImageLabelData.Matrix3f.m01&#39;, index=1,
+      number=2, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;m02&#39;, full_name=&#39;imageLabelData.ImageLabelData.Matrix3f.m02&#39;, index=2,
+      number=3, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;m10&#39;, full_name=&#39;imageLabelData.ImageLabelData.Matrix3f.m10&#39;, index=3,
+      number=4, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;m11&#39;, full_name=&#39;imageLabelData.ImageLabelData.Matrix3f.m11&#39;, index=4,
+      number=5, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;m12&#39;, full_name=&#39;imageLabelData.ImageLabelData.Matrix3f.m12&#39;, index=5,
+      number=6, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;m20&#39;, full_name=&#39;imageLabelData.ImageLabelData.Matrix3f.m20&#39;, index=6,
+      number=7, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;m21&#39;, full_name=&#39;imageLabelData.ImageLabelData.Matrix3f.m21&#39;, index=7,
+      number=8, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;m22&#39;, full_name=&#39;imageLabelData.ImageLabelData.Matrix3f.m22&#39;, index=8,
+      number=9, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1238,
+  serialized_end=1365,
+)
+
+_IMAGELABELDATA_VECTOR3F = _descriptor.Descriptor(
+  name=&#39;Vector3f&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Vector3f&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;x&#39;, full_name=&#39;imageLabelData.ImageLabelData.Vector3f.x&#39;, index=0,
+      number=1, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;y&#39;, full_name=&#39;imageLabelData.ImageLabelData.Vector3f.y&#39;, index=1,
+      number=2, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;z&#39;, full_name=&#39;imageLabelData.ImageLabelData.Vector3f.z&#39;, index=2,
+      number=3, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1367,
+  serialized_end=1410,
+)
+
+_IMAGELABELDATA_VECTOR2F = _descriptor.Descriptor(
+  name=&#39;Vector2f&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Vector2f&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;x&#39;, full_name=&#39;imageLabelData.ImageLabelData.Vector2f.x&#39;, index=0,
+      number=1, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;y&#39;, full_name=&#39;imageLabelData.ImageLabelData.Vector2f.y&#39;, index=1,
+      number=2, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1412,
+  serialized_end=1444,
+)
+
+_IMAGELABELDATA_COLOR = _descriptor.Descriptor(
+  name=&#39;Color&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Color&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;r&#39;, full_name=&#39;imageLabelData.ImageLabelData.Color.r&#39;, index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;g&#39;, full_name=&#39;imageLabelData.ImageLabelData.Color.g&#39;, index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;b&#39;, full_name=&#39;imageLabelData.ImageLabelData.Color.b&#39;, index=2,
+      number=3, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1446,
+  serialized_end=1486,
+)
+
+_IMAGELABELDATA_ROBOT = _descriptor.Descriptor(
+  name=&#39;Robot&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Robot&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;label&#39;, full_name=&#39;imageLabelData.ImageLabelData.Robot.label&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;orientation&#39;, full_name=&#39;imageLabelData.ImageLabelData.Robot.orientation&#39;, index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;fallen&#39;, full_name=&#39;imageLabelData.ImageLabelData.Robot.fallen&#39;, index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;teamcolor&#39;, full_name=&#39;imageLabelData.ImageLabelData.Robot.teamcolor&#39;, index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1489,
+  serialized_end=1643,
+)
+
+_IMAGELABELDATA_OBSTACLE = _descriptor.Descriptor(
+  name=&#39;Obstacle&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Obstacle&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;label&#39;, full_name=&#39;imageLabelData.ImageLabelData.Obstacle.label&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1645,
+  serialized_end=1708,
+)
+
+_IMAGELABELDATA_CAMERAINFORMATION_RESOLUTION = _descriptor.Descriptor(
+  name=&#39;Resolution&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.Resolution&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;height&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.Resolution.height&#39;, index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;width&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.Resolution.width&#39;, index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2048,
+  serialized_end=2091,
+)
+
+_IMAGELABELDATA_CAMERAINFORMATION_CAMERAINTRINSICS = _descriptor.Descriptor(
+  name=&#39;CameraIntrinsics&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.CameraIntrinsics&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;openingAngleWidth&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.CameraIntrinsics.openingAngleWidth&#39;, index=0,
+      number=1, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;openingAngleHeight&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.CameraIntrinsics.openingAngleHeight&#39;, index=1,
+      number=2, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;opticalCenter&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.CameraIntrinsics.opticalCenter&#39;, index=2,
+      number=3, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2094,
+  serialized_end=2231,
+)
+
+_IMAGELABELDATA_CAMERAINFORMATION = _descriptor.Descriptor(
+  name=&#39;CameraInformation&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.CameraInformation&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;resolution&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.resolution&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;cameraIndex&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.cameraIndex&#39;, index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;rotation&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.rotation&#39;, index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;translation&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.translation&#39;, index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;cameraIntrinsics&#39;, full_name=&#39;imageLabelData.ImageLabelData.CameraInformation.cameraIntrinsics&#39;, index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_IMAGELABELDATA_CAMERAINFORMATION_RESOLUTION, _IMAGELABELDATA_CAMERAINFORMATION_CAMERAINTRINSICS, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1711,
+  serialized_end=2231,
+)
+
+_IMAGELABELDATA_BALL = _descriptor.Descriptor(
+  name=&#39;Ball&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Ball&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;label&#39;, full_name=&#39;imageLabelData.ImageLabelData.Ball.label&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;moving&#39;, full_name=&#39;imageLabelData.ImageLabelData.Ball.moving&#39;, index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2233,
+  serialized_end=2308,
+)
+
+_IMAGELABELDATA_GOALPOST = _descriptor.Descriptor(
+  name=&#39;Goalpost&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Goalpost&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;label&#39;, full_name=&#39;imageLabelData.ImageLabelData.Goalpost.label&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2310,
+  serialized_end=2373,
+)
+
+_IMAGELABELDATA_GOAL = _descriptor.Descriptor(
+  name=&#39;Goal&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Goal&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;leftPost&#39;, full_name=&#39;imageLabelData.ImageLabelData.Goal.leftPost&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;rightPost&#39;, full_name=&#39;imageLabelData.ImageLabelData.Goal.rightPost&#39;, index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2375,
+  serialized_end=2494,
+)
+
+_IMAGELABELDATA_LINECROSSING = _descriptor.Descriptor(
+  name=&#39;LineCrossing&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.LineCrossing&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;label&#39;, full_name=&#39;imageLabelData.ImageLabelData.LineCrossing.label&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2496,
+  serialized_end=2563,
+)
+
+_IMAGELABELDATA_CENTERCIRCLE = _descriptor.Descriptor(
+  name=&#39;Centercircle&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.Centercircle&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;label&#39;, full_name=&#39;imageLabelData.ImageLabelData.Centercircle.label&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2565,
+  serialized_end=2632,
+)
+
+_IMAGELABELDATA_IMAGEINFORMATION = _descriptor.Descriptor(
+  name=&#39;ImageInformation&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData.ImageInformation&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;imagechannel&#39;, full_name=&#39;imageLabelData.ImageLabelData.ImageInformation.imagechannel&#39;, index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;blurness&#39;, full_name=&#39;imageLabelData.ImageLabelData.ImageInformation.blurness&#39;, index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;average_brightnes&#39;, full_name=&#39;imageLabelData.ImageLabelData.ImageInformation.average_brightnes&#39;, index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2634,
+  serialized_end=2719,
+)
+
+_IMAGELABELDATA = _descriptor.Descriptor(
+  name=&#39;ImageLabelData&#39;,
+  full_name=&#39;imageLabelData.ImageLabelData&#39;,
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name=&#39;robots&#39;, full_name=&#39;imageLabelData.ImageLabelData.robots&#39;, index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;obstacles&#39;, full_name=&#39;imageLabelData.ImageLabelData.obstacles&#39;, index=1,
+      number=16, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;balls&#39;, full_name=&#39;imageLabelData.ImageLabelData.balls&#39;, index=2,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;goalposts&#39;, full_name=&#39;imageLabelData.ImageLabelData.goalposts&#39;, index=3,
+      number=15, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;goals&#39;, full_name=&#39;imageLabelData.ImageLabelData.goals&#39;, index=4,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;penaltyCrosses&#39;, full_name=&#39;imageLabelData.ImageLabelData.penaltyCrosses&#39;, index=5,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;lineCrossing&#39;, full_name=&#39;imageLabelData.ImageLabelData.lineCrossing&#39;, index=6,
+      number=11, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;centerCircle&#39;, full_name=&#39;imageLabelData.ImageLabelData.centerCircle&#39;, index=7,
+      number=12, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;cameraInformation&#39;, full_name=&#39;imageLabelData.ImageLabelData.cameraInformation&#39;, index=8,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;imageInfos&#39;, full_name=&#39;imageLabelData.ImageLabelData.imageInfos&#39;, index=9,
+      number=13, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;timestamp&#39;, full_name=&#39;imageLabelData.ImageLabelData.timestamp&#39;, index=10,
+      number=6, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;captureDate&#39;, full_name=&#39;imageLabelData.ImageLabelData.captureDate&#39;, index=11,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;captureLocation&#39;, full_name=&#39;imageLabelData.ImageLabelData.captureLocation&#39;, index=12,
+      number=8, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b&#34;&#34;.decode(&#39;utf-8&#39;),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;datasetName&#39;, full_name=&#39;imageLabelData.ImageLabelData.datasetName&#39;, index=13,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b&#34;&#34;.decode(&#39;utf-8&#39;),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;team&#39;, full_name=&#39;imageLabelData.ImageLabelData.team&#39;, index=14,
+      number=10, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b&#34;&#34;.decode(&#39;utf-8&#39;),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name=&#39;playerNumber&#39;, full_name=&#39;imageLabelData.ImageLabelData.playerNumber&#39;, index=15,
+      number=14, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_IMAGELABELDATA_BOUNDINGBOX, _IMAGELABELDATA_POINT, _IMAGELABELDATA_DATE, _IMAGELABELDATA_LABEL, _IMAGELABELDATA_MATRIX3F, _IMAGELABELDATA_VECTOR3F, _IMAGELABELDATA_VECTOR2F, _IMAGELABELDATA_COLOR, _IMAGELABELDATA_ROBOT, _IMAGELABELDATA_OBSTACLE, _IMAGELABELDATA_CAMERAINFORMATION, _IMAGELABELDATA_BALL, _IMAGELABELDATA_GOALPOST, _IMAGELABELDATA_GOAL, _IMAGELABELDATA_LINECROSSING, _IMAGELABELDATA_CENTERCIRCLE, _IMAGELABELDATA_IMAGEINFORMATION, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax=&#39;proto2&#39;,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=41,
+  serialized_end=2719,
+)
+
+_IMAGELABELDATA_BOUNDINGBOX.fields_by_name[&#39;upperLeft&#39;].message_type = _IMAGELABELDATA_POINT
+_IMAGELABELDATA_BOUNDINGBOX.fields_by_name[&#39;lowerRight&#39;].message_type = _IMAGELABELDATA_POINT
+_IMAGELABELDATA_BOUNDINGBOX.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_POINT.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_DATE.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_LABEL.fields_by_name[&#39;boundingBox&#39;].message_type = _IMAGELABELDATA_BOUNDINGBOX
+_IMAGELABELDATA_LABEL.fields_by_name[&#39;date&#39;].message_type = _IMAGELABELDATA_DATE
+_IMAGELABELDATA_LABEL.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_MATRIX3F.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_VECTOR3F.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_VECTOR2F.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_COLOR.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_ROBOT.fields_by_name[&#39;label&#39;].message_type = _IMAGELABELDATA_LABEL
+_IMAGELABELDATA_ROBOT.fields_by_name[&#39;teamcolor&#39;].message_type = _IMAGELABELDATA_COLOR
+_IMAGELABELDATA_ROBOT.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_OBSTACLE.fields_by_name[&#39;label&#39;].message_type = _IMAGELABELDATA_LABEL
+_IMAGELABELDATA_OBSTACLE.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_CAMERAINFORMATION_RESOLUTION.containing_type = _IMAGELABELDATA_CAMERAINFORMATION
+_IMAGELABELDATA_CAMERAINFORMATION_CAMERAINTRINSICS.fields_by_name[&#39;opticalCenter&#39;].message_type = _IMAGELABELDATA_VECTOR2F
+_IMAGELABELDATA_CAMERAINFORMATION_CAMERAINTRINSICS.containing_type = _IMAGELABELDATA_CAMERAINFORMATION
+_IMAGELABELDATA_CAMERAINFORMATION.fields_by_name[&#39;resolution&#39;].message_type = _IMAGELABELDATA_CAMERAINFORMATION_RESOLUTION
+_IMAGELABELDATA_CAMERAINFORMATION.fields_by_name[&#39;rotation&#39;].message_type = _IMAGELABELDATA_MATRIX3F
+_IMAGELABELDATA_CAMERAINFORMATION.fields_by_name[&#39;translation&#39;].message_type = _IMAGELABELDATA_VECTOR3F
+_IMAGELABELDATA_CAMERAINFORMATION.fields_by_name[&#39;cameraIntrinsics&#39;].message_type = _IMAGELABELDATA_CAMERAINFORMATION_CAMERAINTRINSICS
+_IMAGELABELDATA_CAMERAINFORMATION.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_BALL.fields_by_name[&#39;label&#39;].message_type = _IMAGELABELDATA_LABEL
+_IMAGELABELDATA_BALL.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_GOALPOST.fields_by_name[&#39;label&#39;].message_type = _IMAGELABELDATA_LABEL
+_IMAGELABELDATA_GOALPOST.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_GOAL.fields_by_name[&#39;leftPost&#39;].message_type = _IMAGELABELDATA_LABEL
+_IMAGELABELDATA_GOAL.fields_by_name[&#39;rightPost&#39;].message_type = _IMAGELABELDATA_LABEL
+_IMAGELABELDATA_GOAL.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_LINECROSSING.fields_by_name[&#39;label&#39;].message_type = _IMAGELABELDATA_LABEL
+_IMAGELABELDATA_LINECROSSING.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_CENTERCIRCLE.fields_by_name[&#39;label&#39;].message_type = _IMAGELABELDATA_LABEL
+_IMAGELABELDATA_CENTERCIRCLE.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA_IMAGEINFORMATION.containing_type = _IMAGELABELDATA
+_IMAGELABELDATA.fields_by_name[&#39;robots&#39;].message_type = _IMAGELABELDATA_ROBOT
+_IMAGELABELDATA.fields_by_name[&#39;obstacles&#39;].message_type = _IMAGELABELDATA_OBSTACLE
+_IMAGELABELDATA.fields_by_name[&#39;balls&#39;].message_type = _IMAGELABELDATA_BALL
+_IMAGELABELDATA.fields_by_name[&#39;goalposts&#39;].message_type = _IMAGELABELDATA_GOALPOST
+_IMAGELABELDATA.fields_by_name[&#39;goals&#39;].message_type = _IMAGELABELDATA_GOAL
+_IMAGELABELDATA.fields_by_name[&#39;penaltyCrosses&#39;].message_type = _IMAGELABELDATA_LABEL
+_IMAGELABELDATA.fields_by_name[&#39;lineCrossing&#39;].message_type = _IMAGELABELDATA_LINECROSSING
+_IMAGELABELDATA.fields_by_name[&#39;centerCircle&#39;].message_type = _IMAGELABELDATA_CENTERCIRCLE
+_IMAGELABELDATA.fields_by_name[&#39;cameraInformation&#39;].message_type = _IMAGELABELDATA_CAMERAINFORMATION
+_IMAGELABELDATA.fields_by_name[&#39;imageInfos&#39;].message_type = _IMAGELABELDATA_IMAGEINFORMATION
+_IMAGELABELDATA.fields_by_name[&#39;captureDate&#39;].message_type = _IMAGELABELDATA_DATE
+DESCRIPTOR.message_types_by_name[&#39;ImageLabelData&#39;] = _IMAGELABELDATA
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+ImageLabelData = _reflection.GeneratedProtocolMessageType(&#39;ImageLabelData&#39;, (_message.Message,), {
+
+  &#39;BoundingBox&#39; : _reflection.GeneratedProtocolMessageType(&#39;BoundingBox&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_BOUNDINGBOX,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.BoundingBox)
+    })
+  ,
+
+  &#39;Point&#39; : _reflection.GeneratedProtocolMessageType(&#39;Point&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_POINT,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Point)
+    })
+  ,
+
+  &#39;Date&#39; : _reflection.GeneratedProtocolMessageType(&#39;Date&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_DATE,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Date)
+    })
+  ,
+
+  &#39;Label&#39; : _reflection.GeneratedProtocolMessageType(&#39;Label&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_LABEL,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Label)
+    })
+  ,
+
+  &#39;Matrix3f&#39; : _reflection.GeneratedProtocolMessageType(&#39;Matrix3f&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_MATRIX3F,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Matrix3f)
+    })
+  ,
+
+  &#39;Vector3f&#39; : _reflection.GeneratedProtocolMessageType(&#39;Vector3f&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_VECTOR3F,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Vector3f)
+    })
+  ,
+
+  &#39;Vector2f&#39; : _reflection.GeneratedProtocolMessageType(&#39;Vector2f&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_VECTOR2F,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Vector2f)
+    })
+  ,
+
+  &#39;Color&#39; : _reflection.GeneratedProtocolMessageType(&#39;Color&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_COLOR,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Color)
+    })
+  ,
+
+  &#39;Robot&#39; : _reflection.GeneratedProtocolMessageType(&#39;Robot&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_ROBOT,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Robot)
+    })
+  ,
+
+  &#39;Obstacle&#39; : _reflection.GeneratedProtocolMessageType(&#39;Obstacle&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_OBSTACLE,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Obstacle)
+    })
+  ,
+
+  &#39;CameraInformation&#39; : _reflection.GeneratedProtocolMessageType(&#39;CameraInformation&#39;, (_message.Message,), {
+
+    &#39;Resolution&#39; : _reflection.GeneratedProtocolMessageType(&#39;Resolution&#39;, (_message.Message,), {
+      &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_CAMERAINFORMATION_RESOLUTION,
+      &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+      # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.CameraInformation.Resolution)
+      })
+    ,
+
+    &#39;CameraIntrinsics&#39; : _reflection.GeneratedProtocolMessageType(&#39;CameraIntrinsics&#39;, (_message.Message,), {
+      &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_CAMERAINFORMATION_CAMERAINTRINSICS,
+      &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+      # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.CameraInformation.CameraIntrinsics)
+      })
+    ,
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_CAMERAINFORMATION,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.CameraInformation)
+    })
+  ,
+
+  &#39;Ball&#39; : _reflection.GeneratedProtocolMessageType(&#39;Ball&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_BALL,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Ball)
+    })
+  ,
+
+  &#39;Goalpost&#39; : _reflection.GeneratedProtocolMessageType(&#39;Goalpost&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_GOALPOST,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Goalpost)
+    })
+  ,
+
+  &#39;Goal&#39; : _reflection.GeneratedProtocolMessageType(&#39;Goal&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_GOAL,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Goal)
+    })
+  ,
+
+  &#39;LineCrossing&#39; : _reflection.GeneratedProtocolMessageType(&#39;LineCrossing&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_LINECROSSING,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.LineCrossing)
+    })
+  ,
+
+  &#39;Centercircle&#39; : _reflection.GeneratedProtocolMessageType(&#39;Centercircle&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_CENTERCIRCLE,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.Centercircle)
+    })
+  ,
+
+  &#39;ImageInformation&#39; : _reflection.GeneratedProtocolMessageType(&#39;ImageInformation&#39;, (_message.Message,), {
+    &#39;DESCRIPTOR&#39; : _IMAGELABELDATA_IMAGEINFORMATION,
+    &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+    # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData.ImageInformation)
+    })
+  ,
+  &#39;DESCRIPTOR&#39; : _IMAGELABELDATA,
+  &#39;__module__&#39; : &#39;imageLabelData_pb2&#39;
+  # @@protoc_insertion_point(class_scope:imageLabelData.ImageLabelData)
+  })
+_sym_db.RegisterMessage(ImageLabelData)
+_sym_db.RegisterMessage(ImageLabelData.BoundingBox)
+_sym_db.RegisterMessage(ImageLabelData.Point)
+_sym_db.RegisterMessage(ImageLabelData.Date)
+_sym_db.RegisterMessage(ImageLabelData.Label)
+_sym_db.RegisterMessage(ImageLabelData.Matrix3f)
+_sym_db.RegisterMessage(ImageLabelData.Vector3f)
+_sym_db.RegisterMessage(ImageLabelData.Vector2f)
+_sym_db.RegisterMessage(ImageLabelData.Color)
+_sym_db.RegisterMessage(ImageLabelData.Robot)
+_sym_db.RegisterMessage(ImageLabelData.Obstacle)
+_sym_db.RegisterMessage(ImageLabelData.CameraInformation)
+_sym_db.RegisterMessage(ImageLabelData.CameraInformation.Resolution)
+_sym_db.RegisterMessage(ImageLabelData.CameraInformation.CameraIntrinsics)
+_sym_db.RegisterMessage(ImageLabelData.Ball)
+_sym_db.RegisterMessage(ImageLabelData.Goalpost)
+_sym_db.RegisterMessage(ImageLabelData.Goal)
+_sym_db.RegisterMessage(ImageLabelData.LineCrossing)
+_sym_db.RegisterMessage(ImageLabelData.Centercircle)
+_sym_db.RegisterMessage(ImageLabelData.ImageInformation)
+
+
+DESCRIPTOR._options = None
+# @@protoc_insertion_point(module_scope)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData"><code class="flex name class">
+<span>class <span class="ident">ImageLabelData</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>google.protobuf.pyext._message.CMessage</li>
+<li>google.protobuf.message.Message</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Ball"><code class="name">var <span class="ident">Ball</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.BoundingBox"><code class="name">var <span class="ident">BoundingBox</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.CameraInformation"><code class="name">var <span class="ident">CameraInformation</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Centercircle"><code class="name">var <span class="ident">Centercircle</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Color"><code class="name">var <span class="ident">Color</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.DESCRIPTOR"><code class="name">var <span class="ident">DESCRIPTOR</span></code></dt>
+<dd>
+<section class="desc"></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Date"><code class="name">var <span class="ident">Date</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Goal"><code class="name">var <span class="ident">Goal</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Goalpost"><code class="name">var <span class="ident">Goalpost</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.ImageInformation"><code class="name">var <span class="ident">ImageInformation</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Label"><code class="name">var <span class="ident">Label</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.LineCrossing"><code class="name">var <span class="ident">LineCrossing</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Matrix3f"><code class="name">var <span class="ident">Matrix3f</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Obstacle"><code class="name">var <span class="ident">Obstacle</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Point"><code class="name">var <span class="ident">Point</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Robot"><code class="name">var <span class="ident">Robot</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Vector2f"><code class="name">var <span class="ident">Vector2f</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Vector3f"><code class="name">var <span class="ident">Vector3f</span></code></dt>
+<dd>
+<section class="desc"><p>A ProtocolMessage</p></section>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.balls"><code class="name">var <span class="ident">balls</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.balls</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.cameraInformation"><code class="name">var <span class="ident">cameraInformation</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.cameraInformation</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.captureDate"><code class="name">var <span class="ident">captureDate</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.captureDate</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.captureLocation"><code class="name">var <span class="ident">captureLocation</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.captureLocation</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.centerCircle"><code class="name">var <span class="ident">centerCircle</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.centerCircle</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.datasetName"><code class="name">var <span class="ident">datasetName</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.datasetName</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.goalposts"><code class="name">var <span class="ident">goalposts</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.goalposts</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.goals"><code class="name">var <span class="ident">goals</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.goals</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.imageInfos"><code class="name">var <span class="ident">imageInfos</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.imageInfos</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.lineCrossing"><code class="name">var <span class="ident">lineCrossing</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.lineCrossing</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.obstacles"><code class="name">var <span class="ident">obstacles</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.obstacles</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.penaltyCrosses"><code class="name">var <span class="ident">penaltyCrosses</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.penaltyCrosses</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.playerNumber"><code class="name">var <span class="ident">playerNumber</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.playerNumber</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.robots"><code class="name">var <span class="ident">robots</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.robots</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.team"><code class="name">var <span class="ident">team</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.team</p></section>
+</dd>
+<dt id="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.timestamp"><code class="name">var <span class="ident">timestamp</span></code></dt>
+<dd>
+<section class="desc"><p>Field imageLabelData.ImageLabelData.timestamp</p></section>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation" href="index.html">NaoDevils-Segmentation.naodevils_segmentation</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData">ImageLabelData</a></code></h4>
+<ul class="two-column">
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Ball" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Ball">Ball</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.BoundingBox" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.BoundingBox">BoundingBox</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.CameraInformation" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.CameraInformation">CameraInformation</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Centercircle" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Centercircle">Centercircle</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Color" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Color">Color</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.DESCRIPTOR" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.DESCRIPTOR">DESCRIPTOR</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Date" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Date">Date</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Goal" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Goal">Goal</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Goalpost" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Goalpost">Goalpost</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.ImageInformation" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.ImageInformation">ImageInformation</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Label" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Label">Label</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.LineCrossing" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.LineCrossing">LineCrossing</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Matrix3f" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Matrix3f">Matrix3f</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Obstacle" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Obstacle">Obstacle</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Point" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Point">Point</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Robot" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Robot">Robot</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Vector2f" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Vector2f">Vector2f</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Vector3f" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.Vector3f">Vector3f</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.balls" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.balls">balls</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.cameraInformation" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.cameraInformation">cameraInformation</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.captureDate" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.captureDate">captureDate</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.captureLocation" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.captureLocation">captureLocation</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.centerCircle" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.centerCircle">centerCircle</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.datasetName" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.datasetName">datasetName</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.goalposts" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.goalposts">goalposts</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.goals" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.goals">goals</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.imageInfos" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.imageInfos">imageInfos</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.lineCrossing" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.lineCrossing">lineCrossing</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.obstacles" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.obstacles">obstacles</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.penaltyCrosses" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.penaltyCrosses">penaltyCrosses</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.playerNumber" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.playerNumber">playerNumber</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.robots" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.robots">robots</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.team" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.team">team</a></code></li>
+<li><code><a title="NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.timestamp" href="#NaoDevils-Segmentation.naodevils_segmentation.imageLabelData_pb2.ImageLabelData.timestamp">timestamp</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
