@@ -13,6 +13,9 @@ import naodevils_segmentation.imageLabelData_pb2 as imageLabelData_pb2
 
 
 def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2, ran_seed=42):
+  """
+  Get a list of all training or validation img_path, annontation, meta_info
+  """
   folder_names = []
   for file_name in os.listdir(dataset_folder):
     if file_name.endswith(".json"):
@@ -54,6 +57,9 @@ def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2
   return img_paths_annotations
 
 def get_image_meta_infos(img_path):
+  """
+  get brotobuf metainfo in png at img_path
+  """
   protobuf_chunk = read_label_chunk(img_path)
   data = imageLabelData_pb2.ImageLabelData()
   data.ParseFromString(protobuf_chunk)
@@ -61,6 +67,9 @@ def get_image_meta_infos(img_path):
   return json.loads(data_json)
 
 def read_label_chunk(img_path):
+    """
+    read the chunk of the png image
+    """
     p = png.Reader(img_path)
     for chunk_name, chunk_data in p.chunks():
         if chunk_name == b'laBl':
@@ -69,7 +78,9 @@ def read_label_chunk(img_path):
 
 def get_image_array(image_input, width, height, imgNorm="sub_mean",
                   ordering='channels_first'):
-    """ Load image array from input """
+    """
+    Load image array from input
+    """
 
     img = image_input
 
@@ -92,6 +103,9 @@ def get_image_array(image_input, width, height, imgNorm="sub_mean",
     return img
 
 def get_dataset(dataset_folder, kaggle_api_token_path=None):
+  """
+  download dataset with fitting Kaggle Key
+  """
   with open(kaggle_api_token_path) as json_file:
     kaggle_json = json.loads(json_file.read())
     os.environ['KAGGLE_USERNAME'] = kaggle_json["username"]

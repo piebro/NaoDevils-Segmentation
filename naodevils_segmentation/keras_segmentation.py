@@ -203,6 +203,9 @@ def get_segmentation_array(image_input, nClasses, width, height, no_reshape=Fals
 
 
 def get_model_from_str(log_dir, model_str, epoch=None, try_loading_weights=True):
+  """
+  use a model_str to load a model and fitting weights in the log_dir if wanted
+  """
   model_str_list = model_str.split("-")
 
   input_size_str = model_str_list[1]
@@ -242,6 +245,9 @@ def train_with_str(log_dir,
                    steps_per_epoch=None,
                    validation_steps=None
                    ):
+  """
+  train with a model string and save all weight in the log_dir
+  """                   
   model = get_model_from_str(log_dir, model_str, try_loading_weights=False)
 
   print('\nParameter Count:', model.count_params())
@@ -280,6 +286,9 @@ def train(model,
           steps_per_epoch=None,
           validation_steps=None
           ):
+  """
+  train given model and save weights in the log_dir
+  """
 
   train_gen = image_segmentation_generator(
     data_train, batch_size, model, augmentation=augmentation)
@@ -320,7 +329,9 @@ def train(model,
 
 
 def image_segmentation_generator(data_list, batch_size, model, augmentation=None):
-  
+  """
+  generator for the sagmentation models
+  """
   n_classes = model.n_classes
   input_height = model.input_height
   input_width = model.input_width
@@ -354,6 +365,9 @@ def image_segmentation_generator(data_list, batch_size, model, augmentation=None
 
 
 def augment_segmentation(img, seg , augmentation):
+  """
+  augment given image and segmentation mask with an imaug augmentation
+  """
   # Create a deterministic augmentation from the random one
   aug_det = augmentation.to_deterministic()
   # Augment the input image
