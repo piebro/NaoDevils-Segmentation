@@ -1,4 +1,3 @@
-import random
 import os
 import glob
 
@@ -6,12 +5,10 @@ import dataset_loader
 
 import numpy as np
 import imgaug as ia
-from imgaug import augmenters as iaa
 import cv2
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import itertools
-
 
 ALL_MODELS = {}
 
@@ -36,8 +33,8 @@ def add_get_mask_function(name, get_mask_function, n_classes):
   add get_mask_function to ALL_GET_MASK_FUNCTIONS
   '''
   ALL_GET_MASK_FUNCTIONS[name] = {
-      "func": get_mask_function,
-      "n_classes": n_classes   
+    "func": get_mask_function,
+    "n_classes": n_classes   
   }
 
 def get_mask(annotation, height=480, width=640):
@@ -177,7 +174,7 @@ def get_colored_segmentation_mask(img, mask, class_colors=None, augmentation=Non
   seg_img = np.zeros((mask.shape[0], mask.shape[1], 3), dtype=np.uint8)
 
   if augmentation != None:
-      img, mask[:, :] = augment_segmentation(img, mask[:, :], augmentation)
+    img, mask[:, :] = augment_segmentation(img, mask[:, :], augmentation)
 
   for c in unique:
     seg_img[mask == c] = class_colors[c]
@@ -186,23 +183,23 @@ def get_colored_segmentation_mask(img, mask, class_colors=None, augmentation=Non
 
 
 def get_segmentation_array(image_input, nClasses, width, height, no_reshape=False):
-    '''
-    Load segmentation array from input
-    '''
+  '''
+  Load segmentation array from input
+  '''
 
-    seg_labels = np.zeros((height, width, nClasses))
+  seg_labels = np.zeros((height, width, nClasses))
 
-    img = image_input
+  img = image_input
 
-    img = cv2.resize(img, (width, height), interpolation=cv2.INTER_NEAREST)
+  img = cv2.resize(img, (width, height), interpolation=cv2.INTER_NEAREST)
 
-    for c in range(nClasses):
-        seg_labels[:, :, c] = (img == c).astype(int)
+  for c in range(nClasses):
+    seg_labels[:, :, c] = (img == c).astype(int)
 
-    if not no_reshape:
-        seg_labels = np.reshape(seg_labels, (width*height, nClasses))
+  if not no_reshape:
+    seg_labels = np.reshape(seg_labels, (width*height, nClasses))
 
-    return seg_labels
+  return seg_labels
 
 
 def get_model_from_str(log_dir, model_str, epoch=None, try_loading_weights=True):
@@ -283,44 +280,43 @@ def train(model,
           steps_per_epoch=None,
           validation_steps=None
           ):
+
+  train_gen = image_segmentation_generator(
+    data_train, batch_size, model, augmentation=augmentation)
+
+
+  val_gen = image_segmentation_generator(
+    data_val, batch_size, model)
   
-    train_gen = image_segmentation_generator(
-        data_train, batch_size, model, augmentation=augmentation)
-    
+  if steps_per_epoch == None:
+    steps_per_epoch = int(len(data_train)/batch_size)
+  if validation_steps == None:
+    validation_steps = int(len(data_val)/batch_size*0.8)
 
-    val_gen = image_segmentation_generator(
-        data_val, batch_size, model)
-    
-    if steps_per_epoch == None:
-      steps_per_epoch = int(len(data_train)/batch_size)
-    if validation_steps == None:
-      validation_steps = int(len(data_val)/batch_size*0.8)
+  cp_dir = os.path.join(log_dir,train_str)
+  print("Model dir is: " + cp_dir)
+  if os.path.isdir(cp_dir):
+    start_epoch = load_weight(model, cp_dir, train_str)
+  else:
+    os.mkdir(cp_dir)
+    start_epoch = 0
+  tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=cp_dir)
 
-    cp_dir = os.path.join(log_dir,train_str)
-    print("Model dir is: " + cp_dir)
-    if os.path.isdir(cp_dir):
-      start_epoch = load_weight(model, cp_dir, train_str)
-    else:
-      os.mkdir(cp_dir)
-      start_epoch = 0
-    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=cp_dir)
-    
-    save_model_path = os.path.join(cp_dir, train_str + "_weights.{epoch:03d}.hdf5")
-    save_callback = tf.keras.callbacks.ModelCheckpoint(save_model_path)
-    
-    model.compile(loss=loss,
-                  optimizer=optimizer_name,
-                  metrics=metrics)
-    
-    
-    model.fit_generator(train_gen,
-              steps_per_epoch,
-              validation_data=val_gen,
-              validation_steps=validation_steps,
-              epochs=epochs,
-              callbacks=[tensorboard_callback, save_callback],
-              initial_epoch=start_epoch)    
-    return model
+  save_model_path = os.path.join(cp_dir, train_str + "_weights.{epoch:03d}.hdf5")
+  save_callback = tf.keras.callbacks.ModelCheckpoint(save_model_path)
+
+  model.compile(loss=loss,
+                optimizer=optimizer_name,
+                metrics=metrics)
+
+  model.fit_generator(train_gen,
+            steps_per_epoch,
+            validation_data=val_gen,
+            validation_steps=validation_steps,
+            epochs=epochs,
+            callbacks=[tensorboard_callback, save_callback],
+            initial_epoch=start_epoch)    
+  return model
 
 
 def image_segmentation_generator(data_list, batch_size, model, augmentation=None):
@@ -341,30 +337,30 @@ def image_segmentation_generator(data_list, batch_size, model, augmentation=None
 
       img = cv2.imread(data["img_path"])
       mask = model.get_mask_function(data["annotation"])
-      
-      if augmentation != None:
-          img, mask = augment_segmentation(img, mask , augmentation=augmentation )
 
-      X.append(dataset_loader.get_image_array(img, input_width,
-                              input_height, ordering="channels_last"))
-      
+      if augmentation != None:
+        img, mask = augment_segmentation(img, mask , augmentation=augmentation)
+
+      X.append(dataset_loader.get_image_array(
+        img, input_width, input_height, ordering="channels_last"))
+
       Y.append(get_segmentation_array(
-          mask, n_classes, output_width, output_height, no_reshape=True))
-      
+        mask, n_classes, output_width, output_height, no_reshape=True))
+
       # todo: wenn meta info gegebe, dies auch ausgeben, oder das als parameter entscheiden
-    
+
     # [None], because of: https://stackoverflow.com/a/60131716
     yield np.array(X), np.array(Y), [None]
 
 
 def augment_segmentation(img, seg , augmentation):
-    # Create a deterministic augmentation from the random one
-    aug_det = augmentation.to_deterministic()
-    # Augment the input image
-    image_aug = aug_det.augment_image(img)
+  # Create a deterministic augmentation from the random one
+  aug_det = augmentation.to_deterministic()
+  # Augment the input image
+  image_aug = aug_det.augment_image(img)
 
-    segmap = ia.SegmentationMapOnImage(seg, nb_classes=np.max(seg) + 1, shape=img.shape)
-    segmap_aug = aug_det.augment_segmentation_maps(segmap)
-    segmap_aug = segmap_aug.get_arr_int()
+  segmap = ia.SegmentationMapOnImage(seg, nb_classes=np.max(seg) + 1, shape=img.shape)
+  segmap_aug = aug_det.augment_segmentation_maps(segmap)
+  segmap_aug = segmap_aug.get_arr_int()
 
-    return image_aug, segmap_aug
+  return image_aug, segmap_aug
