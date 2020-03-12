@@ -32,6 +32,7 @@ jobs:
         python -m pip install --upgrade pip
         pip3 install --upgrade cython
         pip3 install -r requirements.txt
+        pip3 install pycocotools==2.0.0
         pip3 install pdoc3
 
     - name: Build doc with pdoc3
