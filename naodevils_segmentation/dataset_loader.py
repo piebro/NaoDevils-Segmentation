@@ -9,7 +9,7 @@ from pycocotools.coco import COCO
 from google.protobuf.json_format import MessageToJson
 import numpy as np
 
-import imageLabelData_pb2
+import naodevils_segmentation.imageLabelData_pb2
 
 
 def get_data_list(dataset_folder, dataset_type=None, dataset_validation_size=0.2, ran_seed=42):
