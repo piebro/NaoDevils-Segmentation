@@ -119,12 +119,17 @@ def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None
     ax.imshow(gt2)
 
 
-def show_prediction(model, data_pred, num_of_images=2):
+def show_prediction(model, data_pred, num_of_images=2, indices=None):
   '''
   shows predicted images with the given model from random samples 
   '''
   #TODO show random images in the range without showing the same one twice
-  for i in range(num_of_images):
+  if indices == None:
+    indices = range(num_of_images)
+
+  for i in indices:
+    if i >= len(data_pred):
+        raise IndexError("Try an index <= {}".format(len(data_pred)))
 
     data = data_pred[i]
     img = cv2.imread(data["img_path"])
