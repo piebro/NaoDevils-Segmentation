@@ -273,7 +273,7 @@ def train_with_str(log_dir,
       optimizer_name=optimizer_name,
       augmentation=augmentation,
       metrics=metrics,
-      callbacks=None,
+      callbacks=callbacks,
       loss=loss,
       steps_per_epoch=steps_per_epoch,
       validation_steps=validation_steps
@@ -326,7 +326,7 @@ def train(model,
                 optimizer=optimizer_name,
                 metrics=metrics)
 
-  _callbacks = [tensorboard_callback, save_callback, metrics]
+  _callbacks = [tensorboard_callback, save_callback]
   if not callbacks == None:
     _callbacks.append(callbacks)
 
