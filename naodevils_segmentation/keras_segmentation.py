@@ -246,6 +246,7 @@ def train_with_str(log_dir,
                    batch_size=4,
                    optimizer_name='adadelta',
                    metrics=['accuracy'],
+                   callbacks=None,
                    loss='categorical_crossentropy',
                    steps_per_epoch=None,
                    validation_steps=None
@@ -272,6 +273,7 @@ def train_with_str(log_dir,
       optimizer_name=optimizer_name,
       augmentation=augmentation,
       metrics=metrics,
+      callbacks=None,
       loss=loss,
       steps_per_epoch=steps_per_epoch,
       validation_steps=validation_steps
@@ -287,6 +289,7 @@ def train(model,
           optimizer_name='adadelta',
           augmentation=None,
           metrics=['accuracy'],
+          callbacks=None,
           loss='categorical_crossentropy',
           steps_per_epoch=None,
           validation_steps=None
@@ -323,12 +326,16 @@ def train(model,
                 optimizer=optimizer_name,
                 metrics=metrics)
 
+  _callbacks = [tensorboard_callback, save_callback, metrics]
+  if not callbacks == None:
+    _callbacks.append(callbacks)
+
   model.fit_generator(train_gen,
             steps_per_epoch,
             validation_data=val_gen,
             validation_steps=validation_steps,
             epochs=epochs,
-            callbacks=[tensorboard_callback, save_callback],
+            callbacks=_callbacks,
             initial_epoch=start_epoch)    
   return model
 
