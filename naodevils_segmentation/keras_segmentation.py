@@ -119,12 +119,17 @@ def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None
     ax.imshow(gt2)
 
 
-def show_prediction(model, data_pred, num_of_images=2):
+def show_prediction(model, data_pred, num_of_images=2, indices=None):
   '''
   shows predicted images with the given model from random samples 
   '''
   #TODO show random images in the range without showing the same one twice
-  for i in range(num_of_images):
+  if indices == None:
+    indices = range(num_of_images)
+
+  for i in indices:
+    if i >= len(data_pred):
+        raise IndexError("Try an index <= {}".format(len(data_pred)))
 
     data = data_pred[i]
     img = cv2.imread(data["img_path"])
@@ -241,6 +246,7 @@ def train_with_str(log_dir,
                    batch_size=4,
                    optimizer_name='adadelta',
                    metrics=['accuracy'],
+                   callbacks=None,
                    loss='categorical_crossentropy',
                    steps_per_epoch=None,
                    validation_steps=None
@@ -267,6 +273,7 @@ def train_with_str(log_dir,
       optimizer_name=optimizer_name,
       augmentation=augmentation,
       metrics=metrics,
+      callbacks=callbacks,
       loss=loss,
       steps_per_epoch=steps_per_epoch,
       validation_steps=validation_steps
@@ -282,6 +289,7 @@ def train(model,
           optimizer_name='adadelta',
           augmentation=None,
           metrics=['accuracy'],
+          callbacks=None,
           loss='categorical_crossentropy',
           steps_per_epoch=None,
           validation_steps=None
@@ -318,12 +326,16 @@ def train(model,
                 optimizer=optimizer_name,
                 metrics=metrics)
 
+  _callbacks = [tensorboard_callback, save_callback]
+  if not callbacks == None:
+    _callbacks.append(callbacks)
+
   model.fit_generator(train_gen,
             steps_per_epoch,
             validation_data=val_gen,
             validation_steps=validation_steps,
             epochs=epochs,
-            callbacks=[tensorboard_callback, save_callback],
+            callbacks=_callbacks,
             initial_epoch=start_epoch)    
   return model
 
