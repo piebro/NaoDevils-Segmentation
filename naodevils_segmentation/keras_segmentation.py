@@ -2,6 +2,7 @@ import os
 import glob
 
 import naodevils_segmentation.dataset_loader as dataset_loader
+import naodevils_segmentation.util as util
 
 import numpy as np
 import imgaug as ia
@@ -10,23 +11,15 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import itertools
 
-ALL_MODELS = {}
-
-ALL_AUGMENTATIONS = {}
-
 ALL_GET_MASK_FUNCTIONS = {}
+
+ALL_MODELS = {}
 
 def add_model(name, get_model_function):
   '''
   add model to ALL_MODELS
   '''
   ALL_MODELS[name] = get_model_function
-
-def add_augmentation(name, augmentation):
-  '''
-  add augmentation to ALL_AUGMENTATIONS
-  '''
-  ALL_AUGMENTATIONS[name] = augmentation
 
 def add_get_mask_function(name, get_mask_function, n_classes):
   '''
@@ -73,6 +66,33 @@ def get_mask(annotation, height=480, width=640):
 
   return mask
 
+# [mask==1] = 0 # line
+# [mask==2] = 0 # ball
+# [mask==3] = 0 # robot
+# [mask==4] = 0 # centercircle
+# [mask==5] = 0 # goal
+# [mask==6] = 0 # penaltycross
+
+def get_mask_no_robots_and_balls(annotations):
+  mask = get_mask(annotations)
+  mask[mask==2] = 0 # ball -> background
+  mask[mask==3] = 0 # robot -> background
+  mask[mask>=4] -= 2
+  return mask
+
+add_get_mask_function("no_robot_and_balls", get_mask_no_robots_and_balls, 4 + 1)
+
+def get_mask_only_lines(annotations):
+  mask = get_mask(annotations)
+  mask[mask==2] = 0 # ball -> background
+  mask[mask==3] = 0 # robot -> background
+  mask[mask==4] = 1 # centercircle -> line
+  mask[mask==5] = 0 # goal -> background
+  mask[mask==6] = 0 # penaltycross -> background
+  return mask
+  
+add_get_mask_function("only_lines", get_mask_only_lines, 1 + 1)
+
 
 def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None):
   '''
@@ -82,7 +102,7 @@ def show_images(data_show, get_mask_function, num_of_images=4, augmentation=None
   np.random.shuffle(data_show)
 
   if type(augmentation) == str:
-    augmentation = ALL_AUGMENTATIONS[augmentation]
+    augmentation = util.ALL_AUGMENTATIONS[augmentation]
 
   if type(get_mask_function) == str:
     get_mask_function = ALL_GET_MASK_FUNCTIONS[get_mask_function]["func"]
@@ -259,7 +279,7 @@ def train_with_str(log_dir,
   print('\nParameter Count:', model.count_params())
 
   aug_str = model_str.split("-")[3]
-  augmentation = ALL_AUGMENTATIONS[aug_str]
+  augmentation = util.ALL_AUGMENTATIONS[aug_str]
   if augmentation==None:
     print("no augmentation")
 

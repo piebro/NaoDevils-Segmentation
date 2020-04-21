@@ -3,28 +3,20 @@ import io
 import os
 import json
 
-#import png
 import cv2
 from pycocotools.coco import COCO
-#from google.protobuf.json_format import MessageToJson
 import numpy as np
-
-#import naodevils_segmentation.imageLabelData_pb2 as imageLabelData_pb2
 
 
 def get_data_list(dataset_folder, dataset_validation_size=0.2, ran_seed=42):
   """
   Get a list of all training or validation img_path, annontation, meta_info
   """
-  #annotation_paths = []
-  #for json_file_name in os.listdir(os.path.join(dataset_folder, "annotations")):
-  #  annotation_paths.append(os.path.splitext(json_file_name)[0])
+
 
   annotations_path = os.path.join(dataset_folder, "annotations")
   images_path = os.path.join(dataset_folder, "images")
 
-  print(annotations_path)
-  
   img_paths_annotations = []
   for json_file_name in os.listdir(annotations_path):
     
@@ -36,8 +28,6 @@ def get_data_list(dataset_folder, dataset_validation_size=0.2, ran_seed=42):
     sys.stdout = save_stdout
 
     img_folder_path = os.path.join(images_path, os.path.splitext(json_file_name)[0])
-    print(img_folder_path)
-    
     for img_id in sorted(coco.imgs.keys()):
       img_file_name = coco.loadImgs(img_id)[0]['file_name']
       img_path = os.path.join(img_folder_path, img_file_name)
@@ -62,27 +52,6 @@ def get_data_list(dataset_folder, dataset_validation_size=0.2, ran_seed=42):
   # get the automatically labeld annotations
 
   return dataset
-
-
-
-# def get_image_meta_infos(img_path):
-#   """
-#   get brotobuf metainfo in png at img_path
-#   """
-#   protobuf_chunk = read_label_chunk(img_path)
-#   data = imageLabelData_pb2.ImageLabelData()
-#   data.ParseFromString(protobuf_chunk)
-#   data_json = MessageToJson(data)
-#   return json.loads(data_json)
-
-# def read_label_chunk(img_path):
-#     """
-#     read the chunk of the png image
-#     """
-#     p = png.Reader(img_path)
-#     for chunk_name, chunk_data in p.chunks():
-#         if chunk_name == b'laBl':
-#             return chunk_data
 
 
 def get_image_array(image_input, width, height, imgNorm="sub_mean",
@@ -115,6 +84,10 @@ def get_dataset(dataset_folder, kaggle_api_token_path=None):
   """
   download dataset with fitting Kaggle Key
   """
+  if os.path.isdir(dataset_folder) and len(os.listdir(dataset_folder)) == 0:
+    print("The dataset folder is not empty, not downloading the dataset")
+    return
+
   with open(kaggle_api_token_path) as json_file:
     kaggle_json = json.loads(json_file.read())
     os.environ['KAGGLE_USERNAME'] = kaggle_json["username"]
