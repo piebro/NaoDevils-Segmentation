@@ -84,7 +84,7 @@ def get_dataset(dataset_folder, kaggle_api_token_path=None):
   """
   download dataset with fitting Kaggle Key
   """
-  if os.path.isdir(dataset_folder) and len(os.listdir(dataset_folder)) == 0:
+  if os.path.isdir(dataset_folder) and len(os.listdir(dataset_folder)) != 0:
     print("The dataset folder is not empty, not downloading the dataset")
     return
 
