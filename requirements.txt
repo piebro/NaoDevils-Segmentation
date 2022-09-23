@@ -5,6 +5,6 @@ Keras==2.2.5
 tensorflow>=2.1.0
 opencv-python==4.1.2.30
 pypng==0.0.20
-protobuf==3.10.0
+protobuf==3.18.3
 kaggle==1.5.6
 #pycocotools==2.0.0 should be installed too, but the setup py needs numpy already installed for some reason, install it with pip install pycocotools==2.0.0 manually later
